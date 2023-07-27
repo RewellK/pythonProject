@@ -10,6 +10,7 @@ class Controller:
         address = ObjAddress(strStreet, strNumber, strCity, strState, strCEP)
         self.addressList.append(address)
 
+
     def processAddresses(self):
         strKeyOpenCage = '60a91a7e7e514c2fa9502f125df630ac'
         strKeyOpenRouteService = '5b3ce3597851110001cf624814fa90b79c5e4dc0bc616727d6994085'

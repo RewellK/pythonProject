@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def address_request(request):
     if request.method == 'POST':
+
         # processar os dados do formulário
         pass
     else:
