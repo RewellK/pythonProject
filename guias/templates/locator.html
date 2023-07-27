@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>Create a Locator</h1>
+        <form method="POST" action="{% url 'guias:process_addresses' %}" class="form">
+            {% csrf_token %}
+            <label>
+                <input type="checkbox" name="use_own_address" value="1"> Use Your Address as Origin
+            </label>
+            <br>
+            <label>
+                Number of Addresses:
+                <input type="number" name="num_addresses" min="1" required>
+            </label>
+            <br>
+            <hr>
+            <h2>Enter Addresses:</h2>
+            <div id="address-fields">
+                <label>
+                    Street:
+                    <input type="text" name="str_street_0" required>
+                </label>
+                <br>
+                <label>
+                    Number:
+                    <input type="text" name="str_number_0" required>
+                </label>
+                <br>
+                <label>
+                    City:
+                    <input type="text" name="str_city_0" required>
+                </label>
+                <br>
+                <label>
+                    State:
+                    <input type="text" name="str_state_0" required>
+                </label>
+                <br>
+                <label>
+                    ZIP Code:
+                    <input type="text" name="str_cep_0" required>
+                </label>
+                <br>
+                <hr>
+            </div>
+            <button type="button" class="button" onclick="addAddressField()">Add Address</button>
+            <br>
+            <br>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function addAddressField() {
+            var numAddresses = document.getElementsByName('num_addresses')[0].value;
+            var addressFields = document.getElementById('address-fields');
+
+            var index = addressFields.getElementsByTagName('input').length / 5;
+
+            var div = document.createElement('div');
+            div.innerHTML = `
+                <label>
+                    Street:
+                    <input type="text" name="str_street_${index}" required>
+                </label>
+                <br>
+                <label>
+                    Number:
+                    <input type="text" name="str_number_${index}" required>
+                </label>
+                <br>
+                <label>
+                    City:
+                    <input type="text" name="str_city_${index}" required>
+                </label>
+                <br>
+                <label>
+                    State:
+                    <input type="text" name="str_state_${index}" required>
+                </label>
+                <br>
+                <label>
+                    ZIP Code:
+                    <input type="text" name="str_cep_${index}" required>
+                </label>
+                <br>
+                <hr>
+            `;
+
+            addressFields.appendChild(div);
+        }
+    </script>
+{% endblock %}

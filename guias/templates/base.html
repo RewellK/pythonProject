@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AddressLocator{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% csrf_token %} <!-- Incluir o token CSRF globalmente -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            {% if user.is_authenticated %}
+                <div class="logout-button">
+                    <form action="{% url 'guias:logout' %}" method="post">
+                        {% csrf_token %} <!-- Incluir o token CSRF no formulário de logout -->
+                        <button type="submit" class="button">Logout</button>
+                    </form>
+                </div>
+            {% endif %}
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <p>All rights reserved. AddressLocator &copy; 2023</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>Ordered Addresses</h1>
+        <hr>
+        <ul>
+            {% for address in ordered_addresses %}
+                <li>{{ address.strStreet }} {{ address.strNumber }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <a href="{% url 'guias:locator' %}" class="button">Create a New Locator</a>
+    </div>
+{% endblock %}
